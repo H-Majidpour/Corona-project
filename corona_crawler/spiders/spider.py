@@ -18,7 +18,7 @@ class mySpider(scrapy.Spider):
         Deaths = tmp_list[1]
         Recovered = tmp_list[2]
 
-        Tabale_info = []
+        Table_info = []
 
         Country = []
         number_of_country = len(response.xpath("//tbody/tr/td[1]/text()").extract())
@@ -42,13 +42,13 @@ class mySpider(scrapy.Spider):
         Active_cases = response.xpath('//tbody/tr/td[8]/text()').extract()[8:108]
         
 
-        Tabale_info.append(Country)
-        Tabale_info.append(Total_Cases)
-        Tabale_info.append(New_cases)
-        Tabale_info.append(New_Deaths)
-        Tabale_info.append(Total_Recovered)
-        Tabale_info.append(New_Recovered)
-        Tabale_info.append(Active_cases)
+        Table_info.append(Country)
+        Table_info.append(Total_Cases)
+        Table_info.append(New_cases)
+        Table_info.append(New_Deaths)
+        Table_info.append(Total_Recovered)
+        Table_info.append(New_Recovered)
+        Table_info.append(Active_cases)
 
 
 
@@ -56,7 +56,7 @@ class mySpider(scrapy.Spider):
             pickle.dump(Coronavirus_Cases, Fin)
             pickle.dump(Deaths, Fin)
             pickle.dump(Recovered, Fin)
-            pickle.dump(Tabale_info, Fin)
+            pickle.dump(Table_info, Fin)
 
             Fin.close()
             
