@@ -37,22 +37,22 @@
 					
 					<div class="slide slide_2">
 						<div class="slide-content">
-							<h2><p class="p-cases">مبتلایان تا امروز</p></h2>
-							<p id="cases">1000</p>
+							<h2><p class="p-cases"> Patients to Date </p></h2>
+							<p id="cases">{{ Coronavirus_Cases }}</p>
 						</div>
 					</div>
 					
 					<div class="slide slide_3">
 						<div class="slide-content">
-							<h2><p class="p-cases" >فوت شدگان</p></h2>
-							<p id="death">1000</p>
+							<h2><p class="p-cases" > Deaths </p></h2>
+							<p id="death">{{ Deaths }}</p>
 						</div>
 					</div>
 
 					<div class="slide slide_4">
 						<div class="slide-content">
-							<h2><p class="p-cases">بهبود یافتگان</p></h2>
-							<p id="recover">1000</p>
+							<h2><p class="p-cases"> Recovered </p></h2>
+							<p id="recover">{{ Recovered }}</p>
 						</div>
 					</div>
 					
@@ -92,17 +92,36 @@
                 <th>New Recovered</th>
                 <th>Active cases</th>
             </tr>
-
+			{% for i in range(Country | length) %}
             <tr>
-                <th>100</th>
-                <th>100</th>
-                <th>100</th>
-                <th>100</th>
-                <th>100</th>
-                <th>100</th>
-                <th>100</th>
-                <th>100</th>
+                <th>{{ i + 1 }}</th>
+                <th style="color: #ffc6b3;"class="">{{ Country[i] }}</th>
+                <th>{{ Total_Cases[i] }}</th>
+
+				{% if Total_Cases[i] == " " %}
+					<th>{{ New_cases[i] }}</th>
+				{% else %}	
+           	    	<th class="warning">{{ New_cases[i] }}</th>
+				{% endif %}
+
+
+				{% if New_Deaths[i] == " " %}
+					<th>{{ New_Deaths[i] }}</th>
+				{% else %}
+                	<th class="danger">{{ New_Deaths[i] }}</th>
+				{% endif %}
+
+
+				{% if New_Recovered[i] == " " %}
+					<th>{{ Total_Recovered[i] }}</th>
+				{% else %}
+                	<th class="success">{{ Total_Recovered[i] }}</th>
+				{% endif %}
+
+                <th>{{ New_Recovered[i] }}</th>
+                <th>{{ Active_cases[i] }}</th>
             </tr>
+			{% endfor %}
         </table>
 
 </body>

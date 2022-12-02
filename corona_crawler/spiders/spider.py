@@ -21,7 +21,7 @@ class mySpider(scrapy.Spider):
         Table_info = []
 
         Country = []
-        number_of_country = len(response.xpath("//tbody/tr/td[1]/text()").extract())
+        number_of_country = len(response.xpath("//tbody/tr/td[1]/text()").extract()[:109])
         for i in range(0, number_of_country):
             # Statistics of 100 countries involved in Corona
             this_country = response.xpath("//tbody/tr["+ str(i) +"]/td[2]/span/text()").extract()
@@ -35,7 +35,7 @@ class mySpider(scrapy.Spider):
             self.delete_key(Country, "")
 
         Total_Cases = response.xpath('//tbody/tr/td[3]/text()').extract()[8:108]
-        New_cases = response.xpath('//tbody/tr/td[4]/text()').extract()[8:]
+        New_cases = response.xpath('//tbody/tr/td[4]/text()').extract()[8:108]
         New_Deaths = response.xpath('//tbody/tr/td[5]/text()').extract()[8:108]
         Total_Recovered = response.xpath('//tbody/tr/td[6]/text()').extract()[8:108]
         New_Recovered = response.xpath('//tbody/tr/td[7]/text()').extract()[8:108]
