@@ -1,6 +1,7 @@
 from flask import Flask ,render_template
 import Run_Spider
 import Read_DB
+import Draw_Plot
 
 
 app = Flask(__name__, static_folder = "statics")
@@ -29,8 +30,10 @@ def crawl_info():
     Active_cases = Table_info[6]
 
     # Step 3 : Get Plot Image
+    plot_src = Draw_Plot.get_plot(Country, Total_Cases)
+
 
     return render_template("index.html", Coronavirus_Cases = Coronavirus_Cases, Deaths = Deaths,
     Recovered = Recovered, Country = Country, Total_Cases = Total_Cases, New_cases = New_cases,
     New_Deaths = New_Deaths, Total_Recovered = Total_Recovered, New_Recovered = New_Recovered, 
-    Active_cases = Active_cases)
+    Active_cases = Active_cases, plot_src = plot_src)
